@@ -8,16 +8,20 @@ const startBtn = document.getElementById("startBtn");
 
 startBtn.onclick = (e) => {
   mediaRecorder.start();
-  startBtn.classList.add("is-danger");
-  startBtn.innerText = "Recording";
+  stopBtn.classList.add("is-danger");
+  stopBtn.innerText = "Recording - Press to Stop";
+  stopBtn.style.display = "block";
+  startBtn.style.display = "none";
 };
 
 const stopBtn = document.getElementById("stopBtn");
 
 stopBtn.onclick = (e) => {
   mediaRecorder.stop();
-  startBtn.classList.remove("is-danger");
-  startBtn.innerText = "Start";
+  stopBtn.classList.remove("is-danger");
+  stopBtn.innerText = "Start";
+  stopBtn.style.display = "none";
+  startBtn.style.display = "block";
 };
 
 const videoSelectBtn = document.getElementById("videoSelectBtn");
@@ -47,6 +51,7 @@ const recordsPieces = [];
 //Change the video source
 async function selectSource(source) {
   videoSelectBtn.innerText = source.name;
+  startBtn.style.display = "block";
 
   const constraints = {
     audio: false,
